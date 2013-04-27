@@ -1,4 +1,4 @@
-package com.mokee.permissionsmanager.activity;
+package com.mokee.permissionsmanager.activities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -161,6 +161,7 @@ public class MainActivity extends Activity implements OnItemClickListener,OnChec
 	                    newValue == true ? 1 : 0);
 	        }
 	    }
+	 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
@@ -173,6 +174,7 @@ public class MainActivity extends Activity implements OnItemClickListener,OnChec
 			}
 		}
 	}
+	
 	@Override
 	public void finish() {
 		// TODO Auto-generated method stub

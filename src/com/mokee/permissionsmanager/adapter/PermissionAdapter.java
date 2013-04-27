@@ -16,7 +16,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.mokee.permissionsmanager.R;
-import com.mokee.permissionsmanager.activity.PermissionInfoActivity;
+import com.mokee.permissionsmanager.activities.PermissionInfoActivity;
 import com.mokee.permissionsmanager.domain.AppInfoDomain;
 
 public class PermissionAdapter extends BaseAdapter {

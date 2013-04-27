@@ -1,4 +1,4 @@
-package com.mokee.permissionsmanager.activity;
+package com.mokee.permissionsmanager.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -70,6 +70,5 @@ public class PermissionInfoActivity extends Activity implements OnCheckedChangeL
 		setResult(1024, new Intent().putExtra("newRevokedNum", aid.getRevokedPerList().size()));
 		super.onBackPressed();
 	}
-	
-	
+		
 }
