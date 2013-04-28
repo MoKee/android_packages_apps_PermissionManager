@@ -3,7 +3,7 @@
     package="com.mokee.permissionsmanager"
     android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -14,9 +14,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher_permissionmanager"
         android:label="@string/app_name"
         android:theme="@style/android:Theme.Holo" >
+        
         <activity
             android:name="com.mokee.permissionsmanager.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -25,6 +26,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.mokee.permissionsmanager.activities.PermissionInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />

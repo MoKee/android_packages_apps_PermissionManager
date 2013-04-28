@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The Android Open Source Project
+<!--
+     Copyright (C) 2012 The MoKee OpenSource Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,8 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
@@ -24,27 +26,35 @@
 
     <ImageView
         android:id="@+list/icon"
-        android:layout_width="50.0dip"
-        android:layout_height="50.0dip"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10.0dip"
+        android:layout_marginLeft="10dip"
         android:adjustViewBounds="true" />
 
     <TextView
         android:id="@+list/appName"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10.0dip"
+        android:layout_marginLeft="10dip"
         android:layout_toRightOf="@list/icon"
+        android:textSize="13sp" />
+    
+    <TextView
+        android:id="@+list/appVersionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@list/appName"
         android:textSize="13sp" />
 
     <TextView
         android:id="@+list/totalPermission"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@list/appName"
         android:layout_below="@list/appName"
-        android:layout_marginRight="3.0dip"
+        android:layout_marginRight="3dip"
         android:textSize="13sp" />
 
     <TextView
@@ -53,9 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@list/totalPermission"
         android:layout_below="@list/totalPermission"
-        android:layout_marginRight="3.0dip"
+        android:layout_marginRight="3dip"
         android:textSize="13sp" />
-
-   
 
 </RelativeLayout>

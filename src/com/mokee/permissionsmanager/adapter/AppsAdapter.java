@@ -1,6 +1,7 @@
 package com.mokee.permissionsmanager.adapter;
 
-import java.util.ArrayList;
+import com.mokee.permissionsmanager.R;
+import com.mokee.permissionsmanager.domain.AppInfoDomain;
 
 import android.content.Context;
 import android.text.Html;
@@ -12,8 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mokee.permissionsmanager.R;
-import com.mokee.permissionsmanager.domain.AppInfoDomain;
+import java.util.ArrayList;
 
 public class AppsAdapter extends BaseAdapter {
 	private Context context;
@@ -55,6 +55,7 @@ public class AppsAdapter extends BaseAdapter {
 			convertView=layoutInflater.inflate(R.layout.mk_app_list_item, null);
 			wrapperView=new WrapperView();
 			wrapperView.appName_textView=(TextView) convertView.findViewById(R.list.appName);
+            wrapperView.appVersionName_textView = (TextView) convertView.findViewById(R.list.appVersionName);
 			wrapperView.icon_imageView=(ImageView) convertView.findViewById(R.list.icon);
 			wrapperView.totalPermission_textView=(TextView) convertView.findViewById(R.list.totalPermission);
 			wrapperView.showPermission_textView=(TextView) convertView.findViewById(R.list.showPermission);
@@ -64,8 +65,9 @@ public class AppsAdapter extends BaseAdapter {
 		wrapperView=(WrapperView) convertView.getTag();
 		}
 		wrapperView.appName_textView.setText(aid.getAppName());
+		wrapperView.appVersionName_textView.setText(aid.getVersionName());
 		wrapperView.totalPermission_textView.setText(getStringToHtml(context, R.string.app_total_permission, aid.getTotalPermission()));
-		wrapperView.showPermission_textView.setText(getStringToHtml(context, R.string.app_show_permission, new 	Integer[]{aid.getDisabledNum(),aid.getEnabledNum()}));
+		wrapperView.showPermission_textView.setText(getStringToHtml(context, R.string.app_show_permission, new Integer[]{aid.getDisabledNum(),aid.getEnabledNum()}));
 		wrapperView.icon_imageView.setImageDrawable(aid.getIcon());
 		return convertView;
 	}
@@ -77,7 +79,7 @@ public class AppsAdapter extends BaseAdapter {
 	}
 	class WrapperView
 	{
-		TextView appName_textView,totalPermission_textView,showPermission_textView;
+		TextView appName_textView, appVersionName_textView, totalPermission_textView, showPermission_textView;
 		ImageView icon_imageView;
 	}
 

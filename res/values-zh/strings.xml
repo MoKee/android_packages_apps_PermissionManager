@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The ChameleonOS Project
+<!--
+     Copyright (C) 2012 The MoKee OpenSource Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,6 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <resources>
 
     <string name="app_name">权限管理</string>
@@ -25,17 +27,15 @@
     <string name="pref_enable_management_summary_off">权限管理关闭</string>
     <string name="tab_settings">设置</string>
     <string name="tab_apps">应用</string>
-
     <string name="switch_label">管理</string>
-
-    <string name="dlg_perm_info_dismiss">Dismiss</string>
-
+    <string name="dlg_perm_info_dismiss">离开</string>
     <string name="dlg_disclaimer_title">免责声明</string>
     <string name="dlg_disclaimer_message">禁用权限可以导致程序不工作或崩溃，请你务必记得禁用的权限。\n如果被禁用权限的程序不工作或崩溃，请恢复该程序所需的相应权限。</string>
     <string name="dlg_disclaimer_agree">明白</string>
     <string name="dlg_disclaimer_tldr">不明白</string>
     <string name="dlg_tldr_message">如果被禁用权限的程序不工作或崩溃，请恢复程序所需的相应权限。</string>
     <string name="dlg_tldr_disagree">退出</string>
-	<string name="app_total_permission">所需权限:&lt;font color=\'#0066ff\'> %1$d &lt;/font></string>
-	<string name="app_show_permission">已禁止:&lt;font color=\'#ff0000\'> %1$d &lt;/font> 未禁止:&lt;font color=\'#00ff33\'>%2$d &lt;/font></string>
+    <string name="app_total_permission">所需权限:&lt;font color=\'#0066ff\'> %1$d &lt;/font></string>
+    <string name="app_show_permission">已禁止:&lt;font color=\'#ff0000\'> %1$d &lt;/font> 未禁止:&lt;font color=\'#00ff33\'>%2$d &lt;/font></string>
+
 </resources>
