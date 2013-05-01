@@ -41,12 +41,12 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="4dip"
         android:layout_toLeftOf="@item/layout_status"
-        android:orientation="vertical"
-        android:layout_alignParentLeft="true" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+item/permissionName"

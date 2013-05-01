@@ -1,19 +1,19 @@
 /*
-**
-** Copyright 2013, The MoKee OpenSource Project
-**
-** Licensed under the Apache License, Version 2.0 (the "License");
-** you may not use this file except in compliance with the License.
-** You may obtain a copy of the License at
-**
-**     http://www.apache.org/licenses/LICENSE-2.0
-**
-** Unless required by applicable law or agreed to in writing, software
-** distributed under the License is distributed on an "AS IS" BASIS,
-** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-** See the License for the specific language governing permissions and
-** limitations under the License.
-*/
+ **
+ ** Copyright 2013, The MoKee OpenSource Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **     http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.
+ */
 
 package com.mokee.permissionsmanager.activities;
 
@@ -24,6 +24,7 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +33,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -64,18 +66,34 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
     private Handler mHandler = new Handler();
 
     private int currentRevokedNum;
+    
+    private ProgressDialog pdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mk_app_list);
         mContext = this;
-        listView = (ListView) findViewById(R.mk.listView);
-        listView.setOnItemClickListener(this);
-        getInstalledAppsList();
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        boolean mIsEnabled = Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, 0) == 1;
+        setInstalledAppsListView(mIsEnabled);
+    }
+
+    private void setInstalledAppsListView(boolean isEnabled) {
+        if (isEnabled) {
+            setContentView(R.layout.mk_app_list);
+            listView = (ListView) findViewById(R.mk.listView);
+            listView.setOnItemClickListener(this);
+            pdialog = ProgressDialog
+                    .show(mContext,
+                            getString(R.string.app_name),
+                            getString(R.string.pdgloading));
+            new getInstalledAppsList().execute();
+        } else {
+            setContentView(R.layout.mk_no_app_list);
+        }
     }
 
     @Override
@@ -83,8 +101,6 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                // The user clicked on the Messaging icon in the action bar. Take them back from
-                // wherever they came from
                 finish();
                 return true;
         }
@@ -128,45 +144,48 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
                         }).show();
     }
 
-    /**
-     * get All
-     */
-    private void getInstalledAppsList() {
-        aidList.clear();
-        mHandler.post(new Runnable() {
-            public void run() {
-                PackageManager pm = mContext.getPackageManager();
-                List<PackageInfo> allPackages = pm
-                        .getInstalledPackages(PackageManager.GET_PERMISSIONS);
-                for (int i = 0; i < allPackages.size(); i++) {
-                    PackageInfo pi = allPackages.get(i);
-                    if (!isThisASystemPackage(pi)) {
-                        if (pi.requestedPermissions != null && pi.requestedPermissions.length > 0) {
-                            AppInfoDomain aid = new AppInfoDomain();
-                            aid.appName = pm.getApplicationLabel(pi.applicationInfo).toString();
-                            aid.packageInfo = pi;
-                            aid.appVersionName = pi.versionName;
-                            try {
-                                aid.icon = pm.getApplicationIcon(pi.packageName);
-                                aid.revokedPerList = new ArrayList<String>(Arrays.asList(pm
-                                        .getRevokedPermissions(pi.packageName)));
-                                aid.disabledNum = aid.getRevokedPerList().size();
-                                aid.enabledNum = (pi.requestedPermissions.length - aid
-                                        .getRevokedPerList().size());
-                                aid.totalPermission = pi.requestedPermissions.length;
-                            } catch (NameNotFoundException e) {
-                                aid.icon = pm.getDefaultActivityIcon();
-                                // e.printStackTrace();
-                            }
-                            aidList.add(aid);
+    private class getInstalledAppsList extends AsyncTask<Object, Object, Object> {
+
+        @Override
+        protected Object doInBackground(Object... arg0) {
+            aidList.clear();
+            PackageManager pm = mContext.getPackageManager();
+            List<PackageInfo> allPackages = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+            for (int i = 0; i < allPackages.size(); i++) {
+                PackageInfo pi = allPackages.get(i);
+                if (!isThisASystemPackage(pi)) {
+                    if (pi.requestedPermissions != null && pi.requestedPermissions.length > 0) {
+                        AppInfoDomain aid = new AppInfoDomain();
+                        aid.appName = pm.getApplicationLabel(pi.applicationInfo).toString();
+                        aid.packageInfo = pi;
+                        aid.appVersionName = pi.versionName;
+                        try {
+                            aid.icon = pm.getApplicationIcon(pi.packageName);
+                            aid.revokedPerList = new ArrayList<String>(Arrays.asList(pm
+                                    .getRevokedPermissions(pi.packageName)));
+                            aid.disabledNum = aid.getRevokedPerList().size();
+                            aid.enabledNum = (pi.requestedPermissions.length - aid
+                                    .getRevokedPerList().size());
+                            aid.totalPermission = pi.requestedPermissions.length;
+                        } catch (NameNotFoundException e) {
+                            aid.icon = pm.getDefaultActivityIcon();
+                            // e.printStackTrace();
                         }
+                        aidList.add(aid);
                     }
                 }
-                appsAdapter = new AppsAdapter(mContext, aidList);
-                listView.setAdapter(appsAdapter);
             }
-        });
-    }
+            appsAdapter = new AppsAdapter(mContext, aidList);
+            return appsAdapter;
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
+            listView.setAdapter(appsAdapter);
+            pdialog.dismiss();
+        }
+    };
 
     private static boolean isThisASystemPackage(PackageInfo pkgInfo) {
         return (pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1;
@@ -196,10 +215,11 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean newValue) {
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isEnabled) {
         if (compoundButton == mEnabled) {
             Settings.Secure.putInt(mContext.getContentResolver(),
-                    Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, newValue == true ? 1 : 0);
+                    Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, isEnabled == true ? 1 : 0);
+            setInstalledAppsListView(isEnabled);
         }
     }
 

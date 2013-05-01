@@ -37,5 +37,6 @@
     <string name="dlg_tldr_disagree">Quit</string>
     <string name="app_total_permission">Required permissions:&lt;font color=\'#0066ff\'> %1$d &lt;/font></string>
     <string name="app_show_permission">Disabled:&lt;font color=\'#ff0000\'> %1$d &lt;/font> Not disabled:&lt;font color=\'#00ff33\'>%2$d &lt;/font></string>
-
+    <string name="permissionsmanager_disabled">PermissionsManager was disabled</string>
+    <string name="pdgloading">Loading the program list, please wait...</string>
 </resources>

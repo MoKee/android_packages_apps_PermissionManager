@@ -37,5 +37,6 @@
     <string name="dlg_tldr_disagree">退出</string>
     <string name="app_total_permission">所需权限:&lt;font color=\'#0066ff\'> %1$d &lt;/font></string>
     <string name="app_show_permission">已禁止:&lt;font color=\'#ff0000\'> %1$d &lt;/font> 未禁止:&lt;font color=\'#00ff33\'>%2$d &lt;/font></string>
-
+    <string name="permissionsmanager_disabled">当前已禁用权限管理</string>
+    <string name="pdgloading">正在加载程序列表, 请稍候...</string>
 </resources>
