@@ -73,9 +73,13 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
         mContext = this;
         listView = (ListView) findViewById(R.mk.listView);
         listView.setOnItemClickListener(this);
-        getInstalledAppsList();
+        boolean mIsEnabled = Settings.Secure.getInt(mContext.getContentResolver(),
+             Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, 0) == 1;
+        if (mIsEnabled)
+            getInstalledAppsList();//faster speed when open
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        
     }
 
     @Override
@@ -198,8 +202,18 @@ public class MainActivity extends Activity implements OnItemClickListener, OnChe
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean newValue) {
         if (compoundButton == mEnabled) {
-            Settings.Secure.putInt(mContext.getContentResolver(),
-                    Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, newValue == true ? 1 : 0);
+            if (newValue) {
+                Settings.Secure.putInt(mContext.getContentResolver(),
+                    Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, 1);
+                    getInstalledAppsList();
+                listView.setVisibility(View.VISIBLE);
+            } else {
+                Settings.Secure.putInt(mContext.getContentResolver(),
+                    Settings.Secure.ENABLE_PERMISSIONS_MANAGEMENT, 0);
+                listView.setVisibility(View.GONE);
+            }
+            
+            
         }
     }
 
