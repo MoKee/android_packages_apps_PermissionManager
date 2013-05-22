@@ -95,7 +95,7 @@ public class PermissionAdapter extends BaseAdapter {
         boolean isRevoked = aid.getRevokedPerList().contains(permName);
         wrapperView.permissionInfo_textView.setText(showPermInfo(permName));
         wrapperView.permissionStatus_switch.setOnCheckedChangeListener(null);
-        wrapperView.permissionStatus_switch.setChecked(isRevoked);
+        wrapperView.permissionStatus_switch.setChecked(!isRevoked);
         wrapperView.permissionStatus_switch.setOnCheckedChangeListener(onCheckedChangeListener);
         wrapperView.appName_textView.setText(permName.replace(PermissionInfoActivity.OS_PER_PREFIX,
                 ""));

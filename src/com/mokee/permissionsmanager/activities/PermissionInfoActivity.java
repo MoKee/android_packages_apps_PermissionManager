@@ -89,7 +89,7 @@ public class PermissionInfoActivity extends Activity implements OnCheckedChangeL
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         TextView perNameView = (TextView) buttonView.getTag();
-        if (isChecked) {
+        if (!isChecked) {
             aid.revokedPerList.add(OS_PER_PREFIX + perNameView.getText());
             perNameView.setPaintFlags(perNameView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             perNameView.setTypeface(null, Typeface.BOLD_ITALIC);
