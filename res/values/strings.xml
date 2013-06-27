@@ -30,7 +30,7 @@
     <string name="switch_label">Management</string>
     <string name="dlg_perm_info_dismiss">Dismiss</string>
     <string name="dlg_disclaimer_title">Disclaimer</string>
-    <string name="dlg_disclaimer_message">Disabling permissions can cause potential app crashes. \n If a particular app force closes, please restore the appropriate permissions to stop it.</string>
+    <string name="dlg_disclaimer_message">Disabling permissions can cause potential app crashes. \nIf a particular app force closes, please restore the appropriate permissions to stop it.</string>
     <string name="dlg_disclaimer_agree">Agree</string>
     <string name="dlg_disclaimer_tldr">Disagree</string>
     <string name="dlg_tldr_message">If a particular app force closes after you disabled its permissions, please re-enable the disabled permissions of that app.</string>
