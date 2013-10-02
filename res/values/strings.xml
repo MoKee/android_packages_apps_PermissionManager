@@ -1,42 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2013 The MoKee OpenSource Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
 <resources>
 
-    <string name="app_name">Permissions Manager</string>
+    <string name="app_name">PermissionsManager</string>
     <string name="action_settings">Settings</string>
-    <string name="title_settings">Settings</string>
-    <string name="title_apps">Application</string>
-    <string name="title_activity_manager">Management</string>
-    <string name="pref_enable_management_title">Open Management</string>
-    <string name="pref_enable_management_summary_on">Enable Management</string>
-    <string name="pref_enable_management_summary_off">Disable Management</string>
-    <string name="tab_settings">Settings</string>
-    <string name="tab_apps">Application</string>
-    <string name="switch_label">Management</string>
-    <string name="dlg_perm_info_dismiss">Dismiss</string>
-    <string name="dlg_disclaimer_title">Disclaimer</string>
-    <string name="dlg_disclaimer_message">Disabling permissions can cause potential app crashes. \nIf a particular app force closes, please restore the appropriate permissions to stop it.</string>
-    <string name="dlg_disclaimer_agree">Agree</string>
-    <string name="dlg_disclaimer_tldr">Disagree</string>
-    <string name="dlg_tldr_message">If a particular app force closes after you disabled its permissions, please re-enable the disabled permissions of that app.</string>
-    <string name="dlg_tldr_disagree">Quit</string>
-    <string name="app_total_permission">Required permissions:&lt;font color=\'#0066ff\'> %1$d &lt;/font></string>
-    <string name="app_show_permission">Disabled:&lt;font color=\'#ff0000\'> %1$d &lt;/font> Not disabled:&lt;font color=\'#00ff33\'>%2$d &lt;/font></string>
-    <string name="permissionsmanager_disabled">Permissions Manager is disabled.</string>
-    <string name="pdgloading">Loading the program list, please wait...</string>
+<!-- [CHAR LIMIT=NONE] Time label for an operation that is currently running. -->
+    <string name="app_ops_running">Running</string>
+     <!-- [CHAR LIMIT=NONE] Time label for an operation that has never executed. -->
+    <string name="app_ops_never_used">(Never used)</string>
+    <!-- [CHAR LIMIT=NONE] App ops settings title, on main settings screen. If clicked, the user is taken to a settings screen for app operations -->
+    <string name="app_ops_settings">App ops</string>
+    <!-- Manage applications, version string displayed in app snippet -->
+   <string name="version_text">version %1$s</string>
+   <string name="title">PermissionsManager---Filter:</string>
 </resources>
